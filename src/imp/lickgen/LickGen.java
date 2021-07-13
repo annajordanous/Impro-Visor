@@ -1099,7 +1099,8 @@ private void accumulateProbs(Polylist tones, double categoryProb, double p[])
 
 public Polylist generateRhythmFromGrammar(int startSlot, int slots)
   { 
-    //System.out.println("generateRhythmFromGrammar : startSlot = " + startSlot + ", slots = " + slots);
+    //AKJ I think this is what controls when Improvisor plays and when. Investigate from here.
+    System.out.println("generateRhythmFromGrammar : startSlot = " + startSlot + ", slots = " + slots);
     return grammar.run(startSlot, 
                        slots, 
                        notate, 
