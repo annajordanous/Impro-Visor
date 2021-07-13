@@ -28531,7 +28531,7 @@ public void actionPerformed(ActionEvent evt) {
         int slotsSkipped = getCurrentMelodyPart().size() - 1 - previousSynthSlot;
         long newSlotsElapsed = totalSlotsElapsed + synthSlot + slotsSkipped;
 
-        //System.out.println("\ntotalSlotsElapsed " + bar(totalSlotsElapsed) + " -> " + bar(newSlotsElapsed));
+        // System.out.println("\ntotalSlotsElapsed " + bar(totalSlotsElapsed) + " -> " + bar(newSlotsElapsed));
 
         totalSlotsElapsed = newSlotsElapsed;
       }
@@ -28551,6 +28551,8 @@ public void actionPerformed(ActionEvent evt) {
                                 % (2 * quantum)
                                 < quantum;
         MidiRecorder recorder = getMidiRecorder();
+        System.out.println("isUser Turn = "+isUserTurn+" recorder.getSuspended() = "+recorder.getSuspended()+" quantum = "+quantum+" slotInPLayback = "+ slotInPlayback +" (getImprovisorTradeFirst() = "+getImprovisorTradeFirst()+" calc = "
+            +(slotInPlayback - getCurrentSelectionStart() + (getImprovisorTradeFirst() ? quantum : 0)) % (2 * quantum)); //AKJ DEBUG
         if(isUserTurn && recorder.getSuspended())
             recorder.unSuspend();
         else if(!isUserTurn && !recorder.getSuspended())
