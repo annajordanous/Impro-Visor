@@ -28551,15 +28551,19 @@ public void actionPerformed(ActionEvent evt) {
                                 % (2 * quantum)
                                 < quantum;
         MidiRecorder recorder = getMidiRecorder();
-        System.out.println("isUser Turn = "+isUserTurn+"          recorder.getSuspended() = "+recorder.getSuspended()+" quantum = "+quantum+" slotInPLayback = "+ slotInPlayback +" getImprovisorTradeFirst() = "+getImprovisorTradeFirst()+" calc = "
-            +(slotInPlayback - getCurrentSelectionStart() + (getImprovisorTradeFirst() ? quantum : 0)) % (2 * quantum)); //AKJ DEBUG
+        //System.out.println("isUser Turn = "+isUserTurn+"          recorder.getSuspended() = "+recorder.getSuspended()+" quantum = "+quantum+" slotInPLayback = "+ slotInPlayback +" getImprovisorTradeFirst() = "+getImprovisorTradeFirst()+" calc = "
+        //    +(slotInPlayback - getCurrentSelectionStart() + (getImprovisorTradeFirst() ? quantum : 0)) % (2 * quantum)); //AKJ DEBUG
             // AKJ Interesting - even if tradingDialog options are amended, improvising actions don't change till end of chorus.
             // AKJ Also, if you ask to trade for a number of bars > length of leadsheet, the trading doesn't work. 
             // Everything gets set/reset only at the start of each chorus. No idea of taking multiple choruses each, for example.
-        if(isUserTurn && recorder.getSuspended())
+        if(isUserTurn && recorder.getSuspended())  {
             recorder.unSuspend();
-        else if(!isUserTurn && !recorder.getSuspended())
+            System.out.println("Should be unsuspending now. Is User turn and recorder is suspended");  //AKJ Debug
+            }
+        else if(!isUserTurn && !recorder.getSuspended()) {
             recorder.suspend();
+            System.out.println("Should be suspending now. Is computer turn and recorder is not suspended");   //AKJ Debug
+            }
     }
 
     if(nextLazyPart != null && slotInPlayback > lazyGeneratedGoodUntil - lazyGeneratePreemptiveFactor) {
