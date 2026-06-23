@@ -17114,7 +17114,7 @@ public void setAdviceUsed()
 
                 TreeNode parent = node.getParent();
 
-                Enumeration<TreeNode> e = parent.children();
+                Enumeration<TreeNode> e = (Enumeration<TreeNode>) parent.children();
 
                 TreeNode prev = null;
 
